@@ -28,4 +28,3 @@ jobs:
           git add . || true
           git diff --cached --quiet || git commit -m "Daily market update"
           git push
-``
