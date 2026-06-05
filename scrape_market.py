@@ -4,8 +4,25 @@ from datetime import datetime
 
 TODAY = datetime.utcnow().strftime("%Y-%m-%d")
 
+
 # =========================
-# ⚡ POWER (Nasdaq)
+# ✅ SAFE REQUEST
+# =========================
+def safe_get(url, headers=None):
+    try:
+        r = requests.get(url, headers=headers, timeout=10)
+        if r.status_code == 200:
+            return r
+        else:
+            print(f"⚠️ HTTP {r.status_code}")
+            return None
+    except Exception as e:
+        print(f"⚠️ request fail: {e}")
+        return None
+
+
+# =========================
+# ⚡ POWER (fallback-safe)
 # =========================
 def fetch_power():
 
@@ -14,41 +31,49 @@ def fetch_power():
         "SYHEL_Q": "SYHELQ1"
     }
 
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "application/json"
+    }
+
     rows = []
 
     for name, symbol in SYMBOLS.items():
         print(f"⚡ {name}")
 
+        price, change, pct = None, None, None
+
         try:
             url = f"https://api.nasdaq.com/api/quote/{symbol}/historical?limit=2"
+            r = safe_get(url, headers)
 
-            headers = {
-                "User-Agent": "Mozilla/5.0",
-                "Accept": "application/json"
-            }
+            if r:
+                try:
+                    data = r.json()
+                except:
+                    data = {}
 
-            r = requests.get(url, headers=headers, timeout=10)
-           data = r.json()
+                rows_data = []
 
-            rows_data = []
-            if data.get("data") and data["data"].get("tradesTable"):
-                rows_data = data["data"]["tradesTable"].get("rows", [])
+                if isinstance(data, dict):
+                    if data.get("data") and data["data"].get("tradesTable"):
+                        rows_data = data["data"]["tradesTable"].get("rows", [])
 
+                if len(rows_data) >= 2:
+                    try:
+                        p1 = float(rows_data[0]["close"].replace(",", ""))
+                        p2 = float(rows_data[1]["close"].replace(",", ""))
 
-            if len(rows_data) >= 2:
-                today_price = float(rows_data[0]["close"].replace(",", ""))
-                prev_price = float(rows_data[1]["close"].replace(",", ""))
-
-                change = today_price - prev_price
-                pct = (change / prev_price) * 100
-            else:
-                today_price, change, pct = None, None, None
+                        price = p1
+                        change = p1 - p2
+                        pct = (change / p2) * 100
+                    except:
+                        pass
 
         except Exception as e:
             print(f"⚠️ power fail {name}: {e}")
-            today_price, change, pct = None, None, None
 
-        rows.append([name, symbol, today_price, change, pct, TODAY])
+        rows.append([name, symbol, price, change, pct, TODAY])
 
     with open("latest_power.csv", "w", newline="") as f:
         writer = csv.writer(f)
@@ -59,7 +84,7 @@ def fetch_power():
 
 
 # =========================
-# 🔥 FUEL
+# 🔥 FUEL (safe)
 # =========================
 def fetch_fuel():
 
@@ -77,29 +102,27 @@ def fetch_fuel():
     for name, symbol in SYMBOLS.items():
         print(f"🔥 {name}")
 
+        price, change, pct = None, None, None
+
         try:
             url = f"https://stooq.com/q/d/l/?s={symbol}&i=d"
-            r = requests.get(url, headers=headers, timeout=10)
+            r = safe_get(url, headers)
 
-            if "Close" not in r.text:
-                raise Exception("Blocked")
+            if r and "Close" in r.text:
+                lines = r.text.strip().split("\n")
 
-            lines = r.text.strip().split("\n")
+                if len(lines) >= 3:
+                    last = lines[-1].split(",")
+                    prev = lines[-2].split(",")
 
-            if len(lines) >= 3:
-                last = lines[-1].split(",")
-                prev = lines[-2].split(",")
+                    price = float(last[4])
+                    prev_price = float(prev[4])
 
-                price = float(last[4])
-                prev_price = float(prev[4])
+                    change = price - prev_price
+                    pct = (change / prev_price) * 100
 
-                change = price - prev_price
-                pct = (change / prev_price) * 100
-            else:
-                price, change, pct = None, None, None
-
-        except:
-            price, change, pct = None, None, None
+        except Exception as e:
+            print(f"⚠️ fuel fail {name}: {e}")
 
         rows.append([name, symbol, price, change, pct, TODAY])
 
@@ -112,14 +135,11 @@ def fetch_fuel():
 
 
 # =========================
-# 📊 YHDISTETTY DATA
+# 📊 SUMMARY
 # =========================
 def build_summary(power, fuel):
 
-    rows = []
-
-    for r in power + fuel:
-        rows.append(r)
+    rows = power + fuel
 
     with open("market_summary.csv", "w", newline="") as f:
         writer = csv.writer(f)
@@ -128,14 +148,14 @@ def build_summary(power, fuel):
 
 
 # =========================
-# 📄 REPORT GENERATOR
+# 📄 REPORT
 # =========================
 def build_report(power, fuel):
 
-    def fmt(row):
-        if row[2] is None:
-            return f"{row[0]}: N/A"
-        return f"{row[0]}: {row[2]:.2f} ({row[4]:+.2f}%)"
+    def fmt(r):
+        if r[2] is None:
+            return f"{r[0]}: N/A"
+        return f"{r[0]}: {r[2]:.2f} ({r[4] or 0:.2f}%)"
 
     lines = []
     lines.append(f"📊 MARKET REPORT {TODAY}\n")
@@ -148,34 +168,47 @@ def build_report(power, fuel):
     for r in fuel:
         lines.append(fmt(r))
 
-    # 🔥 Smart insight
+    # Insight
     lines.append("\n📈 INSIGHT")
 
     try:
         co2 = next(x for x in fuel if x[0] == "CO2")[4]
         gas = next(x for x in fuel if x[0] == "GAS")[4]
 
-        if co2 and gas:
-            if co2 > 0:
-                lines.append("CO2 rising → bullish power")
-            if gas > 0:
-                lines.append("Gas rising → pushing power prices up")
+        if co2:
+            lines.append("CO2 trend impacting power markets")
+
+        if gas:
+            lines.append("Gas trend influencing electricity prices")
+
     except:
-        pass
+        lines.append("No clear signal")
 
     with open("market_report.txt", "w") as f:
         f.write("\n".join(lines))
 
 
 # =========================
-# ▶ RUN
+# ▶ MAIN
 # =========================
 if __name__ == "__main__":
 
-    power = fetch_power()
-    fuel = fetch_fuel()
+    print("🚀 START")
 
-    build_summary(power, fuel)
-    build_report(power, fuel)
+    try:
+        power = fetch_power()
+    except:
+        power = []
+
+    try:
+        fuel = fetch_fuel()
+    except:
+        fuel = []
+
+    try:
+        build_summary(power, fuel)
+        build_report(power, fuel)
+    except Exception as e:
+        print(f"⚠️ report fail: {e}")
 
     print("✅ DONE")
