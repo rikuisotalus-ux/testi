@@ -1,24 +1,28 @@
 name: Market Scraper
 
 on:
-  schedule:
-    - cron: "0 6 * * *"   # joka päivä klo 06 UTC
   workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: "3.11"
 
-      - run: pip install requests
+      - name: Install dependencies
+        run: pip install requests
 
-      - run: python scrape_market.py
+      - name: Run script
+        run: python scrape_market.py
 
       - name: Commit results
         run: |
@@ -26,5 +30,10 @@ jobs:
           git config user.email "github-actions@github.com"
 
           git add . || true
-          git diff --cached --quiet || git commit -m "Daily market update"
-          git push
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Daily market update"
+            git push
+          else
+            echo "No changes"
+          fi
