@@ -28,9 +28,12 @@ def fetch_power():
             }
 
             r = requests.get(url, headers=headers, timeout=10)
-            data = r.json()
+           data = r.json()
 
-            rows_data = data["data"]["tradesTable"]["rows"]
+            rows_data = []
+            if data.get("data") and data["data"].get("tradesTable"):
+                rows_data = data["data"]["tradesTable"].get("rows", [])
+
 
             if len(rows_data) >= 2:
                 today_price = float(rows_data[0]["close"].replace(",", ""))
