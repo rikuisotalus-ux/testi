@@ -1,4 +1,4 @@
-name: Market Scraper
+name: Energy Market
 
 on:
   workflow_dispatch:
