@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  scrape:
+  run:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,9 +19,9 @@ jobs:
         with:
           python-version: "3.11"
 
-      - run: pip install requests
+      - run: pip install requests pandas
 
-      - run: python scrape_market.py
+      - run: python market_pipeline.py
 
       - run: |
           git config user.name "github-actions"
@@ -30,7 +30,7 @@ jobs:
           git add . || true
 
           if ! git diff --cached --quiet; then
-            git commit -m "Daily update"
+            git commit -m "Market update"
             git push
           else
             echo "No changes"
