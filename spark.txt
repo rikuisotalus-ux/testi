@@ -1,11 +1,11 @@
-Delivery   Bid    Ask Last Time  +/- On Vol Off Vol Tot Vol Open High Low  Settl.   O.I Product ProductCode       Date  Spark
-Jan 2027 96.50 100.50    -    -  0.0      -       -       -    -    -   -   96.50     7    NSBM  NSBMJAN-27 2026-07-31  94.00
-Dec 2026 96.00 100.00    -    -  0.0      -       -       -    -    -   -   96.00   103    NSBM  NSBMDEC-26 2026-07-31  93.50
-Nov 2026 94.00  98.00    -    -  0.0      -       -       -    -    -   -   94.00    99    NSBM  NSBMNOV-26 2026-07-31  91.50
- Q1 2027 92.95  95.92    -    -  0.0      -       -       -    -    -   -   92.95 1,343    NSBQ    NSBQ1-27 2026-07-31  90.45
- Q4 2026 91.65  92.40    -    -  0.0      -       -       -    -    -   -   91.65 5,583    NSBQ    NSBQ4-26 2026-07-31  89.15
-Oct 2026 81.58  85.58    -    -  0.0      -       -       -    -    -   -   81.58   196    NSBM  NSBMOCT-26 2026-07-31  79.08
-Sep 2026 78.36  80.25    -    -  0.0      -       -       -    -    -   -   78.36 5,579    NSBM  NSBMSEP-26 2026-07-31  75.86
- Q1 2028 71.50  73.50    -    -  0.0      -       -       -    -    -   -   71.50   221    NSBQ    NSBQ1-28 2026-07-31  69.00
-Aug 2026 63.80  65.00    -    -  0.0      -       -       -    -    -   -   63.80 5,517    NSBM  NSBMAUG-26 2026-07-31  61.30
-    2027 54.30  54.90    -    -  0.0      -       -       -    -    -   -   54.30 4,395    NSBY     NSBY-27 2026-07-31  51.80
+Delivery   Bid   Ask  Last  Time  +/- On Vol Off Vol Tot Vol  Open  High   Low  Settl.   O.I Product ProductCode       Date  Spark
+ Q1 2027 95.30 96.05 95.65 16:05 2.26     14       7      21 94.00 95.65 94.00    95.3 1,351    NSBQ    NSBQ1-27 2026-08-01   92.8
+    2027     -     -     -     -    -      -       -       -     -     -     -     NaN     -    HLBY     HLBY-27 2026-08-01    NaN
+    2028     -     -     -     -    -      -       -       -     -     -     -     NaN     -    HLBY     HLBY-28 2026-08-01    NaN
+    2029     -     -     -     -    -      -       -       -     -     -     -     NaN     -    HLBY     HLBY-29 2026-08-01    NaN
+    2030     -     -     -     -    -      -       -       -     -     -     -     NaN     -    HLBY     HLBY-30 2026-08-01    NaN
+ Q4 2026     -     -     -     -    -      -       -       -     -     -     -     NaN     -    HLBQ    HLBQ4-26 2026-08-01    NaN
+ Q1 2027     -     -     -     -    -      -       -       -     -     -     -     NaN     -    HLBQ    HLBQ1-27 2026-08-01    NaN
+ Q2 2027     -     -     -     -    -      -       -       -     -     -     -     NaN     -    HLBQ    HLBQ2-27 2026-08-01    NaN
+ Q3 2027     -     -     -     -    -      -       -       -     -     -     -     NaN     -    HLBQ    HLBQ3-27 2026-08-01    NaN
+Jul 2026     -     -     -     -    -      -       -       -     -     -     -     NaN     -    HLBM  HLBMJUL-26 2026-08-01    NaN
