@@ -1,11 +1,11 @@
-Delivery   Bid Ask  Last  Time   +/- On Vol Off Vol Tot Vol  Open  High   Low  Settl.   O.I Product ProductCode       Date  Spark
- Q4 2027 61.80   - 62.30 15:55 -0.35      1       -       1 62.30 62.30 62.30    61.8   742    NSBQ    NSBQ4-27 2026-09-26   59.3
- Q2 2027 51.30   - 54.20 15:56 -0.45     14      23      37 54.75 54.75 54.20    51.3   874    NSBQ    NSBQ2-27 2026-09-26   48.8
-    2028 45.20   -     -     -  0.00      -      31      31     -     -     -    45.2 2,234    NSBY     NSBY-28 2026-09-26   42.7
-    2029 43.60   -     -     -  0.00      -       6       6     -     -     -    43.6   977    NSBY     NSBY-29 2026-09-26   41.1
-    2027     -   - -6.00 15:28 -0.10      2      11      13 -6.00 -6.00 -6.00     NaN   925    HLBY     HLBY-27 2026-09-26    NaN
-    2028     -   -     -     -  0.00      -       6       6     -     -     -     NaN   402    HLBY     HLBY-28 2026-09-26    NaN
-    2029     -   -     -     -  0.00      -       -       -     -     -     -     NaN   119    HLBY     HLBY-29 2026-09-26    NaN
-    2030     -   -     -     -  0.00      -       -       -     -     -     -     NaN    61    HLBY     HLBY-30 2026-09-26    NaN
- Q4 2026     -   -     -     -  0.00      -       4       4     -     -     -     NaN 1,067    HLBQ    HLBQ4-26 2026-09-26    NaN
- Q1 2027     -   -     -     -  0.00      -       7       7     -     -     -     NaN   282    HLBQ    HLBQ1-27 2026-09-26    NaN
+Product ProductCode       Date  Settl.  Spark
+   HLBQ    HLBQ4-26 2026-09-27     NaN    NaN
+   HLBQ    HLBQ1-27 2026-09-27     NaN    NaN
+   HLBQ    HLBQ2-27 2026-09-27     NaN    NaN
+   HLBQ    HLBQ3-27 2026-09-27     NaN    NaN
+   HLBM  HLBMSEP-26 2026-09-27     NaN    NaN
+   HLBM  HLBMOCT-26 2026-09-27     NaN    NaN
+   HLBM  HLBMNOV-26 2026-09-27     NaN    NaN
+   HLBM  HLBMDEC-26 2026-09-27     NaN    NaN
+   NSBY     NSBY-27 2026-09-27     NaN    NaN
+   NSBY     NSBY-28 2026-09-27     NaN    NaN
