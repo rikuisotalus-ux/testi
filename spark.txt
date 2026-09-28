@@ -1,11 +1,11 @@
-Product ProductCode       Date  Settl.  Spark
-   HLBQ    HLBQ4-26 2026-09-27     NaN    NaN
-   HLBQ    HLBQ1-27 2026-09-27     NaN    NaN
-   HLBQ    HLBQ2-27 2026-09-27     NaN    NaN
-   HLBQ    HLBQ3-27 2026-09-27     NaN    NaN
-   HLBM  HLBMSEP-26 2026-09-27     NaN    NaN
-   HLBM  HLBMOCT-26 2026-09-27     NaN    NaN
-   HLBM  HLBMNOV-26 2026-09-27     NaN    NaN
-   HLBM  HLBMDEC-26 2026-09-27     NaN    NaN
-   NSBY     NSBY-27 2026-09-27     NaN    NaN
-   NSBY     NSBY-28 2026-09-27     NaN    NaN
+Delivery    Bid    Ask   Last  Time  +/- On Vol Off Vol Tot Vol   Open   High    Low  Settl.   O.I Product ProductCode       Date  Spark
+Jan 2027 126.00 127.81      -     - 0.00      -       -       -      -      -      -  126.00   175    NSBM  NSBMJAN-27 2026-09-28 123.50
+Feb 2027 124.24 128.24      -     - 0.00      -       -       -      -      -      -  124.24   109    NSBM  NSBMFEB-27 2026-09-28 121.74
+ Q1 2027 114.65 115.25 115.40 14:30 1.27     36      13      49 116.00 116.31 115.15  114.65 2,666    NSBQ    NSBQ1-27 2026-09-28 112.15
+Nov 2026 113.26 115.05 114.95 14:59 1.20     15      10      25 116.50 116.55 114.95  113.26   757    NSBM  NSBMNOV-26 2026-09-28 110.76
+Dec 2026 112.00 113.90 114.00 12:12 2.00      3      10      13 114.00 114.00 114.00  112.00   702    NSBM  NSBMDEC-26 2026-09-28 109.50
+ Q4 2026 110.70 111.41 111.40 14:30 1.13     31      20      51 112.00 112.25 111.40  110.70 5,750    NSBQ    NSBQ4-26 2026-09-28 108.20
+Oct 2026 105.50 105.99 105.50 14:59 0.49    149       -     149 106.00 107.00 105.50  105.50 1,082    NSBM  NSBMOCT-26 2026-09-28 103.00
+Sep 2026  95.00  95.50      -     - 0.00      -       -       -      -      -      -   95.00 6,055    NSBM  NSBMSEP-26 2026-09-28  92.50
+Mar 2027  90.91  94.91      -     - 0.00      -       -       -      -      -      -   90.91   107    NSBM  NSBMMAR-27 2026-09-28  88.41
+ Q1 2028  81.90  82.50      -     - 0.00      -       -       -      -      -      -   81.90   378    NSBQ    NSBQ1-28 2026-09-28  79.40
